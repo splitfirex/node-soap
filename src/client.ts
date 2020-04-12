@@ -314,6 +314,25 @@ export class Client extends EventEmitter {
       // RPC/literal response body may contain elements with added suffixes I.E.
       // 'Response', or 'Output', or 'Out'
       // This doesn't necessarily equal the ouput message name. See WSDL 1.1 Section 2.4.5
+
+      const content = response.body.split(/--uuid:.*/)
+      .filter(x=> x!=='')
+      .map(x=>{
+
+          const result = {
+              contentId: x.match(/Content-Id: <(.*)>/)[1] || ['',''],
+              contentType: x.match(/Content-Type: (.*)/)[1] || ['',''],
+              contentTransferEncoding: x.match(/Content-Transfer-Encoding: (.*)/)[1] || ['',''],
+              content: x.replace(/Content-Id: (.*)/,'')
+                      .replace(/Content-Type: (.*)/,'')
+                      .replace(/Content-Transfer-Encoding: (.*)/,'')
+              }
+              return result;
+
+      });
+
+      result.__attachments__ = content;
+
       if (!result) {
         result = obj.Body[output.$name.replace(/(?:Out(?:put)?|Response)$/, '')];
       }

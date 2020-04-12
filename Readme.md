@@ -4,6 +4,8 @@
 
 This module lets you connect to web services using SOAP.  It also provides a server that allows you to run your own SOAP services.
 
+INCLUDES FIX FOR MULTIPLE ATTACHMENTS RESPONSE. ASYNC NOW INCLUDE AN "___ATTACHMENT___" VALUE WITH ALL RAW RESPONSE.
+
 <!-- Run `npm run toc` to update below section -->
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
